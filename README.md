@@ -1,6 +1,6 @@
 # wildtuna
 
-> A Vue.js project
+> A Vue.js ecommerce site with Shopify as back-end.
 
 ## Build Setup
 

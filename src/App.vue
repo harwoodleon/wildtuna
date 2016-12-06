@@ -1,22 +1,26 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <hello></hello>
+    <placeholder></placeholder>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import placeholder from './components/Placeholder'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    placeholder
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+  
+  @import 'main';
+
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
