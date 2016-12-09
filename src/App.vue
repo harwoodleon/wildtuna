@@ -1,16 +1,24 @@
 <template>
   <div id="app">
-    <placeholder></placeholder>
+    <product v-for="product in Products.products" :product=product></product>
   </div>
 </template>
 
 <script>
 import placeholder from './components/Placeholder'
+import Products from '../products.json'
+import product from './components/Product'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      Products: Products
+    }
+  },
   components: {
-    placeholder
+    placeholder,
+    product
   }
 }
 </script>
