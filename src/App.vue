@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <product v-for="product in Products.products" :product=product></product>
+    <cart></cart>
   </div>
 </template>
 
 <script>
-import placeholder from './components/Placeholder'
+import Placeholder from './components/Placeholder'
 import Products from '../products.json'
-import product from './components/Product'
+import Product from './components/Product'
+import Cart from './components/Cart'
 
 export default {
   name: 'app',
@@ -17,8 +19,16 @@ export default {
     }
   },
   components: {
-    placeholder,
-    product
+    Placeholder,
+    Product,
+    Cart
+  },
+  methods: {
+    addToCart: function (product) {
+      console.log('here 4 ' + product.id)
+      Cart.someMethod()
+      console.log(Cart)
+    }
   }
 }
 </script>
