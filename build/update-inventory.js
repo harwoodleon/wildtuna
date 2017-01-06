@@ -10,7 +10,6 @@ var https = require('https')
 var fs = require('fs')
 
 var api  = require('../.api-credentials.json')
-// https://apikey:password@hostname/admin/resource.json
 var req_url  = 'https://' + api.key + ':' + api.password + '@' + api.store + '.myshopify.com/admin/'
 
 
@@ -21,14 +20,17 @@ function getProducts(req_url){
     var data = [];
 
     res.on('data', function(chunk) {
+      console.log('Recieved products')
       data.push(chunk)
     });
     res.on('end', function() {
+      console.log('Writing file...')
       writeToFile(JSON.parse(data))
+      console.log('\x1b[32mFinished with no errors\x1b[0m')
     });
 
   }).on('error', function(e) {
-    console.log("Got error: " + e.message)
+    console.log('\x1b[31mError: ' + e.message + '\x1b[0m')
   })
 
 }

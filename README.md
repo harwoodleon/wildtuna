@@ -1,6 +1,7 @@
 # wildtuna
 
 > A Vue.js ecommerce site with Shopify as back-end.
+
 > Status: in progress. does not build.
 
 ## Build Setup
