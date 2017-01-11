@@ -6,4 +6,5 @@ npm-debug.log
 .idea/misc.xml
 .idea/modules.xml
 .idea/wildtuna.iml
-.api-credentials
+client-api-credentials.json
+node-api-credentials.json
