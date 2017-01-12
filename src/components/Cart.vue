@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import api from '../../.api-credentials.json'
+import api from '../../client-api-credentials.json'
 import ShopifyBuy from 'shopify-buy'
 import Vue from 'vue'
 

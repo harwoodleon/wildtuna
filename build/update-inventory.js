@@ -9,7 +9,7 @@
 var https = require('https')
 var fs = require('fs')
 
-var api  = require('../.api-credentials.json')
+var api  = require('../node-api-credentials.json')
 var req_url  = 'https://' + api.key + ':' + api.password + '@' + api.store + '.myshopify.com/admin/'
 
 
