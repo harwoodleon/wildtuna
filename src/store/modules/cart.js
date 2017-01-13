@@ -1,9 +1,13 @@
 import * as types from '../mutation-types'
+import cart from '../api/shopify-api.js'
+
+console.log(cart)
 
 // initial state
 // shape: [{ id, quantity }]
 const state = {
   added: [],
+  cart: null,
   checkoutStatus: null
 }
 
@@ -28,6 +32,7 @@ const actions = {
 // mutations
 const mutations = {
   [types.ADD_TO_CART] (state, { id }) {
+    console.log('cart-mutation ADD_TO_CART')
     state.lastCheckout = null
     const record = state.added.find(p => p.id === id)
     if (!record) {

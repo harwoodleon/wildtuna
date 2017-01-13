@@ -15,7 +15,7 @@ var req_url  = 'https://' + api.key + ':' + api.password + '@' + api.store + '.m
 
 function getProducts(req_url){
 
-  https.get(req_url + 'products.json?fields=id,images,title,product_type', function(res) {
+  https.get(req_url + 'products.json?fields=id,images,title,product_type,variants', function(res) {
 
     var data = [];
 

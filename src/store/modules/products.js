@@ -12,11 +12,11 @@ const getters = {
 
 // actions
 const actions = {
-  getAllProducts ({ commit }) {
-    // shop.getProducts(products => {
-    //   commit(types.RECEIVE_PRODUCTS, { products })
-    // })
-  }
+  // getAllProducts ({ commit }) {
+  //   shop.getProducts(products => {
+  //     commit(types.RECEIVE_PRODUCTS, { products })
+  //   })
+  // }
 }
 
 // mutations
@@ -26,7 +26,8 @@ const mutations = {
   },
 
   [types.ADD_TO_CART] (state, { id }) {
-    state.all.find(p => p.id === id).inventory--
+    console.log('product-mutation ADD_TO_CART')
+    // state.all.find(p => p.id === id).inventory--
   }
 }
 

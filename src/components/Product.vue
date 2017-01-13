@@ -1,29 +1,32 @@
 <template>
   <div class="placeholder">
-    <p>{{ product.title }}</p>
-    <img v-for="image in product.images" :src=image.src>
-    <button v-on:click="addCart(product)">{{ product.title }}</button>
+    <p>{{ p.title }}</p>
+    <img v-for="image in p.images" :src=image.src>
+    <button @click="addToCart(p)">{{ p.title }}</button>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-
-var bus = new Vue()
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'product',
-  props: ['product'],
+  props: ['p'],
   data () {
     return {
       msg: 'Wild Tuna'
     }
   },
+  computed: mapGetters({
+    products: 'allProducts'
+  }),
   methods: {
-    addCart: function (product) {
-      console.log('here 3 ' + product.id)
-      bus.$emit('addCartProduct', product)
-    }
+    ...mapActions([
+      'addToCart'
+    ]),
+    ...mapMutations([
+      'ADD_TO_CART'
+    ])
   }
 }
 

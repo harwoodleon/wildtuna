@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <product v-for="product in Products.products" :product=product></product>
+    <product v-for="product in Products.products" :p=product></product>
     <cart></cart>
   </div>
 </template>

@@ -6,10 +6,8 @@
 <script>
 import api from '../../client-api-credentials.json'
 import ShopifyBuy from 'shopify-buy'
-import Vue from 'vue'
 
-var bus = new Vue()
-var cart, shopClient
+var shopClient
 
 export default {
   name: 'cart',
@@ -23,14 +21,11 @@ export default {
       domain: api.store + '.myshopify.com',
       appId: api.js_buy_id
     })
-    shopClient.createCart().then(function (newCart) {
-      cart = newCart
-      console.log(cart)
-      // do something with updated cart
-    })
-    bus.$on('addCartProduct', function (product) {
-      console.log('here 4')
-      console.log(product)
+    shopClient.fetchRecentCart().then(function (newCart) {
+      console.log(newCart.id)
+      this.$store.dispatch('update-cart', {
+        cart: newCart
+      })
     })
   },
   methods: {
