@@ -8,9 +8,6 @@ const shopClient = ShopifyBuy.buildClient({
   appId: api.js_buy_id
 })
 
-shopClient.fetchRecentCart().then(function (newCart) {
-  console.log(newCart.id)
-  var cart = newCart
-})
+// shopClient.fetchAllProducts()
 
-export { cart }
+export default shopClient.fetchRecentCart()

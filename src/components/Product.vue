@@ -2,30 +2,38 @@
   <div class="placeholder">
     <p>{{ p.title }}</p>
     <img v-for="image in p.images" :src=image.src>
-    <button @click="addToCart(p)">{{ p.title }}</button>
+    <br/>
+    <button @click="addToCart([variant, p])">Add {{ p.title }} to cart</button>
+
+    <select v-model="variant">
+      <option v-for="variant in Variants" v-bind:value="variant">{{ variant.title }}</option>
+    </select>
+    <span>Selected: {{ variant.title }}</span>
+    <br/>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'product',
   props: ['p'],
   data () {
     return {
-      msg: 'Wild Tuna'
+      msg: 'Wild Tuna',
+      variant: this.p.variants[0],
+      Variants: this.p.variants
     }
   },
-  computed: mapGetters({
-    products: 'allProducts'
-  }),
+  computed: {
+    ...mapGetters({
+      products: 'allProducts'
+    })
+  },
   methods: {
     ...mapActions([
       'addToCart'
-    ]),
-    ...mapMutations([
-      'ADD_TO_CART'
     ])
   }
 }

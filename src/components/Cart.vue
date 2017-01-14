@@ -1,32 +1,56 @@
 <template>
-  <div id="cart">
+  <!-- .cart begin -->
+  <div class="cart" v-bind:class="classObject">
+
+    <!-- .cart-section begin // cart header -->
+    <div class="cart-section cart-section--top">
+      <h2 class="cart-title">Your cart</h2>
+      <button class="btn--close">
+        <span aria-role="hidden">×</span>
+        <span class="visuallyhidden">Close</span>
+      </button>
+    </div>
+    <!-- .cart-section end -->
+
+    <!-- .cart-form begin // cart body -->
+    <div class="cart-form">
+      <div class="cart-item-container cart-section">
+
+      </div>
+
+      <!-- .cart-bottom begin -->
+      <div class="cart-bottom">
+        <div class="cart-info clearfix cart-section">
+          <div class="type--caps cart-info__total cart-info__small">Total</div>
+          <div class="cart-info__pricing">
+            <span class="cart-info__small cart-info__total">CAD</span>
+            <span class="pricing pricing--no-padding"></span>
+          </div>
+        </div>
+        <div class="cart-actions-container cart-section type--center">
+          <div class="cart-discount-notice cart-info__small">Shipping and discount codes are added at checkout.</div>
+          <input type="submit" class="btn btn--cart-checkout" id="checkout" name="checkout" value="Checkout">
+        </div>
+      </div>
+      <!-- .cart-bottom end -->
+
+    </div>
+    <!-- .cart-form end -->
+
   </div>
+  <!-- .cart end -->
 </template>
 
 <script>
-import api from '../../client-api-credentials.json'
-import ShopifyBuy from 'shopify-buy'
-
-var shopClient
-
 export default {
   name: 'cart',
-  components: {
-    api,
-    ShopifyBuy
-  },
-  created: function () {
-    shopClient = ShopifyBuy.buildClient({
-      apiKey: api.js_buy_key,
-      domain: api.store + '.myshopify.com',
-      appId: api.js_buy_id
-    })
-    shopClient.fetchRecentCart().then(function (newCart) {
-      console.log(newCart.id)
-      this.$store.dispatch('update-cart', {
-        cart: newCart
-      })
-    })
+  props: ['a'],
+  computed: {
+    classObject: function () {
+      return {
+        'js-active': this.a
+      }
+    }
   },
   methods: {
     someMethod: function () {
@@ -34,8 +58,225 @@ export default {
     }
   }
 }
+
 </script>
 
 <style lang="scss">
+  $color-title: #302F30;
+  $color-border: #302F30;
+  .cart {
+    position: fixed;
+    width: 100%;
+    max-width: 350px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    background: white;
+    border-radius: 1px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
 
+    &.js-active {
+      transform: translateX(0);
+      box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .cart-section {
+    position: relative;
+    padding: 20px;
+  }
+
+  .cart-section--top {
+    z-index: 5;
+  }
+
+  .cart-title {
+    color: $color-title;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 90%;
+  }
+
+  .btn--close {
+    position: absolute;
+    right: 9px;
+    top: 8px;
+    font-size: 35px;
+    color: $color-title;
+    border: none;
+    background: transparent;
+    transition: transform 100ms ease;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+      color: darken($color-title, 5%);
+    }
+  }
+
+  .cart-form {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    padding: 70px 0 140px 0;
+  }
+
+  .cart-item-container {
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    perspective: 400px;
+    perspective-origin: 50% 0px;
+  }
+
+  .cart-item {
+    margin-bottom: 20px;
+    overflow: hidden;
+    backface-visibility: visible;
+    min-height: 65px;
+    position: relative;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+
+    &.js-hidden {
+      opacity: 0;
+    }
+
+    &.js-working:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.5);
+      z-index: 2;
+    }
+  }
+
+  .cart-item__img {
+    width: 65px;
+    height: 65px;
+    border-radius: 3px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #e5e5e5;
+    position: absolute;
+  }
+
+  .cart-item__content {
+    width: 100%;
+    padding-left: 75px;
+  }
+
+  .cart-item__content-row {
+    margin-bottom: 5px;
+  }
+
+  .cart-item__variant-title {
+    float: right;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 17px;
+    color: #767676;
+  }
+
+  .cart-item__quantity-container {
+    border: 1px solid #767676;
+    float: left;
+    border-radius: 3px;
+  }
+
+  .quantity-decrement, .quantity-increment {
+    color: #767676;
+    display: block;
+    float: left;
+    height: 21px;
+    line-height: 16px;
+    font-family: monospace;
+    width: 25px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .cart-item__quantity {
+    color: black;
+    width: 38px;
+    height: 21px;
+    font-size: inherit;
+    border: none;
+    text-align: center;
+    -moz-appearance: textfield;
+    background: transparent;
+    border-left: 1px solid #767676;
+    border-right: 1px solid #767676;
+    display: block;
+    float: left;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .cart-item__price {
+    line-height: 23px;
+    float: right;
+    font-weight: bold;
+  }
+
+  .cart-bottom {
+    border-top: 1px solid $color-border;
+  }
+
+  .cart-info {
+    padding: 15px 20px 10px;
+  }
+
+  .cart-info__total {
+    float: left;
+    text-transform: uppercase;
+  }
+
+  .cart-info__small {
+    font-size: 11px;
+  }
+
+  .cart-info__pricing {
+    float: right;
+  }
+
+  .cart-discount-notice {
+    color: $color-title;
+    margin-bottom: 10px;
+  }
+
+  .cart-actions-container {
+    padding-top: 5px;
+  }
+
+  .pricing {
+    margin-left: 5px;
+    font-size: 16px;
+    color: black;
+  }
 </style>

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <product v-for="product in Products.products" :p=product></product>
-    <cart></cart>
+    <cart :a=active></cart>
+    <br/>
+    <button @click="toggleCart()">cart</button>
   </div>
 </template>
 
@@ -15,7 +17,8 @@ export default {
   name: 'app',
   data () {
     return {
-      Products: Products
+      Products: Products,
+      active: false
     }
   },
   components: {
@@ -28,6 +31,9 @@ export default {
       console.log('here 4 ' + product.id)
       Cart.someMethod()
       console.log(Cart)
+    },
+    toggleCart: function () {
+      this.active = !this.active
     }
   }
 }
