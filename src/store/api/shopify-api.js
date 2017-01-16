@@ -9,5 +9,24 @@ const shopClient = ShopifyBuy.buildClient({
 })
 
 // shopClient.fetchAllProducts()
+const cartPromise = shopClient.fetchRecentCart()
+cartPromise.then((cart) => {
+  console.log('CART ' + cart.id)
+  console.log(cart)
+  console.log(cart.lineItems)
+  console.log('..............\n..............\n..............\n')
+})
 
-export default shopClient.fetchRecentCart()
+const addVariantToCart = (cart, variant, quantity) => {
+  cart.createLineItemsFromVariants({ variant: variant, quantity: quantity }).then(function () {
+    console.log('----------------\n\n')
+    console.log(variant)
+    var cartItem = cart.lineItems.filter((item) => (item.variant_id === variant.id))[0]
+    console.log(cartItem)
+    console.log(cart)
+    console.log(cart.lineItems)
+    console.log('----------------\n\n')
+  })
+}
+
+export { cartPromise, addVariantToCart }

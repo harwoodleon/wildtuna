@@ -5,12 +5,13 @@
  * Output:  JSON file of all products
  */
 
+'use strict'
 
-var https = require('https')
-var fs = require('fs')
+let https = require('https')
+let fs = require('fs')
 
-var api  = require('../node-api-credentials.json')
-var req_url  = 'https://' + api.key + ':' + api.password + '@' + api.store + '.myshopify.com/admin/'
+let api  = require('../node-api-credentials.json')
+let req_url  = 'https://' + api.key + ':' + api.password + '@' + api.store + '.myshopify.com/admin/'
 
 
 function getProducts(req_url){

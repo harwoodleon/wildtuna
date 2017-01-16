@@ -1,12 +1,5 @@
 import * as types from '../mutation-types'
-import cartPromise from '../api/shopify-api.js'
-
-let cart
-
-cartPromise.then(function (newCart) {
-  cart = newCart
-  console.log('CART_Id ' + cart.id)
-})
+import { cartPromise, addVariantToCart } from '../api/shopify-api.js'
 
 // initial state
 // shape: [{ id, quantity }]
@@ -35,19 +28,19 @@ const actions = {
 
 // mutations
 const mutations = {
-  [types.ADD_TO_CART] (state, { variantID, productID }) {
-    console.log('cart-mutation ADD_TO_CART')
-    console.log(state)
-    state.lastCheckout = null
-    const record = state.added.find(p => p.id === variantID)
-    if (!record) {
-      state.added.push({
-        id: variantID,
-        quantity: 1
-      })
-    } else {
-      record.quantity++
-    }
+  [types.ADD_TO_CART] (state, { variantID, productID, variant }) {
+    console.log('\n\n\n')
+    // when cart promise is resolved
+    cartPromise.then((cart) => {
+      console.log('cart-mutation ADD_TO_CART')
+      console.log(cart)
+      console.log(cart.id)
+      console.log(cart.lineItems)
+      console.log('\n\n\n')
+      console.log(variant)
+      addVariantToCart(cart, variant, 1)
+      // const record = state.added.find(p => p.id === variantID)
+    })
   },
 
   [types.CHECKOUT_REQUEST] (state) {

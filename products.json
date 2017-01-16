@@ -38,17 +38,8 @@
                     "product_id": 7820999568,
                     "position": 1,
                     "created_at": "2016-12-07T17:23:40-08:00",
-                    "updated_at": "2016-12-07T17:23:40-08:00",
-                    "src": "https://cdn.shopify.com/s/files/1/1641/0761/products/14733523_682472558578310_7282812504357470208_n_7ac122aa-c030-4980-8198-46fe926f22bc.jpg?v=1481160220",
-                    "variant_ids": []
-                },
-                {
-                    "id": 17252219280,
-                    "product_id": 7820999568,
-                    "position": 2,
-                    "created_at": "2016-12-07T17:23:44-08:00",
-                    "updated_at": "2016-12-07T17:23:44-08:00",
-                    "src": "https://cdn.shopify.com/s/files/1/1641/0761/products/seattle_06ed9f66-d62c-48b1-b2c1-b2837c78644f.gif?v=1481160224",
+                    "updated_at": "2017-01-16T13:15:19-08:00",
+                    "src": "https://cdn.shopify.com/s/files/1/1641/0761/products/14733523_682472558578310_7282812504357470208_n_7ac122aa-c030-4980-8198-46fe926f22bc.jpg?v=1484601319",
                     "variant_ids": []
                 }
             ]
@@ -169,26 +160,8 @@
                     "product_id": 7808286672,
                     "position": 1,
                     "created_at": "2016-12-05T11:51:06-08:00",
-                    "updated_at": "2016-12-07T16:37:58-08:00",
-                    "src": "https://cdn.shopify.com/s/files/1/1641/0761/products/test_jacket.png?v=1481157478",
-                    "variant_ids": []
-                },
-                {
-                    "id": 17251077008,
-                    "product_id": 7808286672,
-                    "position": 2,
-                    "created_at": "2016-12-07T16:21:11-08:00",
-                    "updated_at": "2016-12-07T16:37:58-08:00",
-                    "src": "https://cdn.shopify.com/s/files/1/1641/0761/products/14733523_682472558578310_7282812504357470208_n.jpg?v=1481157478",
-                    "variant_ids": []
-                },
-                {
-                    "id": 17251119056,
-                    "product_id": 7808286672,
-                    "position": 3,
-                    "created_at": "2016-12-07T16:23:43-08:00",
-                    "updated_at": "2016-12-07T16:37:58-08:00",
-                    "src": "https://cdn.shopify.com/s/files/1/1641/0761/products/seattle.gif?v=1481157478",
+                    "updated_at": "2017-01-16T13:15:30-08:00",
+                    "src": "https://cdn.shopify.com/s/files/1/1641/0761/products/test_jacket.png?v=1484601330",
                     "variant_ids": []
                 }
             ]
