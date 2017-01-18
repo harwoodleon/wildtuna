@@ -6,8 +6,7 @@
     <div class="cart-section cart-section--top">
       <h2 class="cart-title">Your cart</h2>
       <button class="btn--close">
-        <span aria-role="hidden">×</span>
-        <span class="visuallyhidden">Close</span>
+        <span @click="closeCart()" aria-role="hidden">×</span>
       </button>
     </div>
     <!-- .cart-section end -->
@@ -44,17 +43,27 @@
 <script>
 export default {
   name: 'cart',
-  props: ['a'],
+  props: ['toggleActive'],
+  data () {
+    return {
+      active: false
+    }
+  },
   computed: {
     classObject: function () {
       return {
-        'js-active': this.a
+        'js-active': this.active
       }
     }
   },
   methods: {
-    someMethod: function () {
-      console.log('here 2')
+    closeCart: function () {
+      this.active = false
+    }
+  },
+  watch: {
+    toggleActive: function () {
+      this.active = !this.active
     }
   }
 }

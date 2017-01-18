@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <product v-for="product in Products.products" :p=product></product>
-    <cart :a=active></cart>
+    <cart :toggleActive=toggle></cart>
     <br/>
     <button @click="toggleCart()">cart</button>
   </div>
@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       Products: Products,
-      active: false
+      toggle: 0
     }
   },
   components: {
@@ -27,22 +27,16 @@ export default {
     Cart
   },
   methods: {
-    addToCart: function (product) {
-      console.log('here 4 ' + product.id)
-      Cart.someMethod()
-      console.log(Cart)
-    },
     toggleCart: function () {
-      this.active = !this.active
+      // change toggle to trigger cart watch: toggle
+      this.toggle += 1
     }
   }
 }
 </script>
 
 <style lang="scss">
-
   @import 'main';
-
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -18,6 +18,10 @@ cartPromise.then((cart) => {
 })
 
 const addVariantToCart = (cart, variant, quantity) => {
+  shopClient.fetchProduct(variant.product_id).then(function (product) {
+    console.log(product)
+  })
+
   cart.createLineItemsFromVariants({ variant: variant, quantity: quantity }).then(function () {
     console.log('----------------\n\n')
     console.log(variant)
