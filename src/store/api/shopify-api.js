@@ -8,29 +8,22 @@ const shopClient = ShopifyBuy.buildClient({
   appId: api.js_buy_id
 })
 
-// shopClient.fetchAllProducts()
-const cartPromise = shopClient.fetchRecentCart()
-cartPromise.then((cart) => {
-  console.log('CART ' + cart.id)
-  console.log(cart)
-  console.log(cart.lineItems)
-  console.log('..............\n..............\n..............\n')
-})
+const apiCartPromise = shopClient.fetchRecentCart()
+const apiProductsPromise = shopClient.fetchAllProducts()
 
-const addVariantToCart = (cart, variant, quantity) => {
-  shopClient.fetchProduct(variant.product_id).then(function (product) {
-    console.log(product)
-  })
-
+const apiAddVariantToCart = (cart, variant, quantity) => {
   cart.createLineItemsFromVariants({ variant: variant, quantity: quantity }).then(function () {
-    console.log('----------------\n\n')
-    console.log(variant)
     var cartItem = cart.lineItems.filter((item) => (item.variant_id === variant.id))[0]
     console.log(cartItem)
-    console.log(cart)
-    console.log(cart.lineItems)
-    console.log('----------------\n\n')
   })
 }
 
-export { cartPromise, addVariantToCart }
+const apiClearCart = () => {
+  apiCartPromise.then((cart) => {
+    console.log('clearing...')
+    cart.clearLineItems()
+    console.log(cart.lineItems)
+  })
+}
+
+export { apiCartPromise, apiProductsPromise, apiAddVariantToCart, apiClearCart }

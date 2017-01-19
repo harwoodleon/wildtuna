@@ -9,6 +9,10 @@
         <span @click="closeCart()" aria-role="hidden">×</span>
       </button>
     </div>
+
+    <span v-for="p in products">
+        {{ p }}
+    </span>
     <!-- .cart-section end -->
 
     <!-- .cart-form begin // cart body -->
@@ -41,6 +45,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'cart',
   props: ['toggleActive'],
@@ -54,7 +60,10 @@ export default {
       return {
         'js-active': this.active
       }
-    }
+    },
+    ...mapGetters({
+      products: 'cartProducts'
+    })
   },
   methods: {
     closeCart: function () {

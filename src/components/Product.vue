@@ -8,8 +8,6 @@
     <select v-model="variant">
       <option v-for="variant in Variants" v-bind:value="variant">{{ variant.title }}</option>
     </select>
-    <span>Selected: {{ variant.title }}</span>
-    <br/>
   </div>
 </template>
 

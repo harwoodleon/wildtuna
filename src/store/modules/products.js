@@ -1,4 +1,5 @@
 import * as types from '../mutation-types'
+import { apiProductsPromise } from '../api/shopify-api.js'
 
 // initial state
 const state = {
@@ -12,16 +13,17 @@ const getters = {
 
 // actions
 const actions = {
-  // getAllProducts ({ commit }) {
-  //   shop.getProducts(products => {
-  //     commit(types.RECEIVE_PRODUCTS, { products })
-  //   })
-  // }
+  getAllProducts ({ commit }) {
+    apiProductsPromise.then((products) => {
+      commit(types.RECEIVE_PRODUCTS, { products })
+    })
+  }
 }
 
 // mutations
 const mutations = {
   [types.RECEIVE_PRODUCTS] (state, { products }) {
+    console.log('product-mutation RECEIVE_PRODUCTS')
     state.all = products
   },
 
